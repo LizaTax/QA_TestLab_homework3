@@ -13,7 +13,7 @@ public class GeneralActions {
 
     public GeneralActions(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, 15);
     }
 
     /**
@@ -61,7 +61,7 @@ public class GeneralActions {
     }
 
     private void clickOnElement(By by) {
-        WebElement e = new WebDriverWait(driver, 5).until(ExpectedConditions.elementToBeClickable(by));
+        WebElement e = wait.until(ExpectedConditions.elementToBeClickable(by));
         if (e == null) {
             throw new ElementNotInteractableException(String.format("Element %s can not be clicked", by));
         }
@@ -87,7 +87,7 @@ public class GeneralActions {
     }
 
     private void verifyElementAppears(By by) {
-        new WebDriverWait(driver, 200).until(ExpectedConditions.visibilityOfElementLocated(by));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
     private void verifyElementWithTextPresent(By by, String text) {
